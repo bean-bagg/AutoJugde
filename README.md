@@ -120,4 +120,11 @@ http://localhost:8501
 ```
 ### 6. Use the application
 - Enter the required input fields
-- Predict Class difficulty and Score 
+- Predict Class difficulty and Score
+---
+## Author Details:
+- Name: Parth Bansal
+- Enrollment No.: 24112081
+
+## Report and Demo Video
+- Link to Drive: https://drive.google.com/drive/folders/1V1s9qtGAu-jhhYlyEIlU-s9u0FVv7vdD
