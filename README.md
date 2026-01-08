@@ -93,7 +93,8 @@ It is a Streamlit based interactive interface where users can submit the require
 ## Steps to run project locally
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/VEDxyz7/AutoJudge.git
+git clone https://github.com/bean-bagg/AutoJugde.git
+git clone 
 cd AutoJudge
 ```
 
