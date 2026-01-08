@@ -25,37 +25,68 @@ Addition to these textual data, some additional data that was present in the raw
 - Raw data in .jsonl format converted to .csv format
 - Analyzing the data before use, includes:
     - Class-wise no. of problems
-    - 
-- Cleaning and normalizing problem statements  
-- Encoding categorical features  
-- Handling missing or inconsistent values  
+    - Class-wise Min., Max., and Median scores
+    - Length of description
+- Cleaning and normalizing problem statements 
+- Handling missing values
+- Converting all text fields into single text field (user_input)
+- Differentiating Title, Description, input/output description in user_input
 
 ### Feature Extraction
-- Text-based features (e.g., TF-IDF, embeddings)  
-- Numerical features (e.g., number of constraints, test cases)  
+- Text-based features using TF-IDF (Term Frequency-Inverse Document Frequency)
+- TF-IDF is used to mark words according to their frequency
+- Numerical features (e.g., count of keywords, arithmetic operations, etc. )  
 
 ### Models
-1. **Classification Model**  
-   - Predicts difficulty category: Easy / Medium / Hard  
-   - Algorithm: *(e.g., Random Forest / XGBoost / SVM)*  
+1. **Classification Model** :  Predicts class-wise difficulty (Easy / Medium / Hard)
+   - Logistic Regression
+   - Support Vector Machine (Linear SVM)
+   - Multinomial Naive Bayes
+   - Random Forest classifier
 
-2. **Regression Model**  
-   - Predicts continuous difficulty score  
-   - Algorithm: *(e.g., Random Forest Regressor / Linear Regression)*  
+2. **Regression Model** : Predicts continuous difficulty score on a scale of 10
+   - Linear Regression
+   - Ridge Regressor
+   - Random Forest Regressor
+   - Gradient Boosting Regressor
 
 ---
 
-## Evaluation Metrics
-- **Classification:** Accuracy  
+### Evaluation Metrics
+- **Classification:** Accuracy, f1-score, Confusion Matrix  
 - **Regression:** Mean Absolute Error (MAE), Root Mean Squared Error (RMSE)  
 
-> Add your actual metric values here.
+## 📊Model Results
+1. **Classification:**
+   
+|        Model       |  Accuracy | F1-Score (Easy) | F1-Score (Med.) | F1-Score (Hard) |
+|--------------------|-----------|-----------------|-----------------|-----------------|
+| Logistic Regression| 0.466     | 0.46            | 0.35            | 0.56            |
+|     Linear SVM     | 0.210     | 0.32            | 0.00            | 0.11            |
+|   Multinomial NB   | 0.482     | 0.10            | 0.19            | 0.65            |
+|    Random Forest   | 0.526     | 0.44            | 0.24            | 0.66            |
 
+- Linear Reg: It struggles while predicting Medium and Hard problems
+- Linear SVM: It predicts most of the problems as Easy
+- Multinomial NB: It predicts almost all problems as Medium
+- Random Forest: It is mainly confused between Easy-Medium and sometimes between Medium-Hard
+
+- Final Classifier used: Random Forest Classifier
+
+2. **Regression:**
+   
+|        Model       |    MAE    |       RSME      |
+|--------------------|-----------|-----------------|
+|    Logistic Reg.   | 2.359     | 2.934           |
+|        Ridge       | 1.737     | 2.075           |
+|   Random Forest    | 1.672     | 2.022           |
+|   Gradient Boost   | 1.687     | 2.015           |
+
+- Final Regressor used: Gradient Boosting Regressor
 ---
 
-## Steps to Run the Project Locally
+## Web-Application
+It is a Streamlit based interactive interface where users can submit the required text fields of a programming problem and can get a difficulty class and score on the basis of the textual data only. Predictions are made, based on the final ML models that performed best during experimental phase.
 
-1. Clone the repository:  
-   ```bash
-   git clone <repo-link>
-   cd AutoJudge
+## Steps to run project locally
+
